@@ -21,8 +21,7 @@ jobs:
 
       - name: Run Infracost cost estimate
         run: |
-          infracost breakdown --path=terraform \  # <-- adjust path if needed
-                              --format=table
+          infracost breakdown --path=terraform --format=table
 
       - name: Generate HTML report
         run: |
