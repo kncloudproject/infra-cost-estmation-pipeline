@@ -2,7 +2,7 @@ package terraform
 
 import rego.v1
 
-allowed_instance_types := ["t3.micro", "t3.small"]
+allowed_instance_types := ["t3.micro", "t2.micro"]
 
 deny contains msg if {
 	some resource in input.resource_changes
