@@ -1,4 +1,4 @@
-name: "Run Infracost"
+name: "Run Infracost on Worflow Dispatch"
 
 on:
   workflow_dispatch:
