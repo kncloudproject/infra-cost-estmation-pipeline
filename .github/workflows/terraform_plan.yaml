@@ -1,4 +1,4 @@
-name: 'Terraform Plan'
+name: 'Terraform Plan for OPA'
 
 # on: workflow_dispatch
 
@@ -18,7 +18,7 @@ permissions:
 
 jobs:
   terraform:
-    name: 'Terraform'
+    name: 'Terraform for OPA Compliance Check'
     runs-on: ubuntu-latest
     environment: production
     defaults:

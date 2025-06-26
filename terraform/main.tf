@@ -62,12 +62,12 @@ resource "aws_route_table_association" "gitops_rta" {
 
 resource "aws_security_group" "gitops_sg" {
   name        = "gitops_sg"
-  description = "Allow port 3000"
+  description = "Allow port 80"
   vpc_id      = aws_vpc.gitops_vpc.id
 
   ingress {
-    from_port   = 3000
-    to_port     = 3000
+    from_port   = 80
+    to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
