@@ -97,21 +97,6 @@ resource "aws_instance" "grafana_server" {
 }
 
 
-resource "aws_instance" "grafana_server_2" {
-  ami                    = data.aws_ami.ubuntu.id
-  instance_type          = var.instance_type
-  subnet_id              = aws_subnet.gitops_subnet.id
-  vpc_security_group_ids = [aws_security_group.gitops_sg.id]
-  user_data              = file("userdata.tftpl")
-
-  tags = {
-    Name = "grafana-server-2"
-  }
-}
-
-
-
-
 # check "grafana_health_check" {
 #   data "http" "test" {
 #     url = "http://${aws_instance.grafana_server.public_ip}:3000"
