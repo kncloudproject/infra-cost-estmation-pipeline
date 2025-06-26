@@ -1,0 +1,37 @@
+name: "Run Infracost"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  infracost-cost-check:
+    name: Infracost Cost Estimate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Infracost
+        uses: infracost/actions/setup@v3
+        with:
+          api-key: ${{ secrets.INFRACOST_API_KEY }}
+
+      - name: Run Infracost cost estimate
+        run: |
+          infracost breakdown --path=terraform \  # <-- adjust path if needed
+                              --format=table
+
+      - name: Generate HTML report
+        run: |
+          infracost breakdown --path=iac \
+                              --format=html \
+                              --out-file=infracost-report.html
+
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: infracost-report
+          path: infracost-report.html
