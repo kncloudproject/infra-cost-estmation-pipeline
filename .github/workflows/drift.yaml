@@ -1,0 +1,31 @@
+name: 'Drift Detection'
+
+# on:
+#   schedule:
+#     - cron: '*/45 * * * *'  # Runs every 45 minutes
+
+on: workflow_dispatch
+
+jobs:
+  detect_drift:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      # Example: Run terraform plan for drift detection
+      - name: Terraform Init & Plan
+        run: |
+          terraform init
+          terraform plan -no-color -detailed-exitcode
