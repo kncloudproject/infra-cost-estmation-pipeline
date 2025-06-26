@@ -25,7 +25,7 @@ jobs:
 
       - name: Generate HTML report
         run: |
-          infracost breakdown --path=iac \
+          infracost breakdown --path=terraform \
                               --format=html \
                               --out-file=infracost-report.html
 
