@@ -1,13 +1,15 @@
 name : "Run Infracost"
 # Infracost runs on pull requests (PR) and posts PR comments.
-on:
-  pull_request:
-    types: [opened, synchronize, closed]
+# on:
+#   pull_request:
+#     types: [opened, synchronize, closed]
+
+on: workflow_dispatch
 
 jobs:
   infracost-pull-request-checks:
     name: Infracost Pull Request Checks
-    if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'synchronize')
+    # if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'synchronize')
     runs-on: ubuntu-latest
     permissions:
       contents: read
