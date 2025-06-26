@@ -1,5 +1,4 @@
 terraform {
-  required_version = "~> 1.9.5"
   backend "s3" {
     bucket         = "kn-pbl-terraform-statefile-infracost"
     key            = "infracost/terraform.tfstate"
