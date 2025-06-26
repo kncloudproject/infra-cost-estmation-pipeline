@@ -1,5 +1,6 @@
 name : "Run Infracost on PR"
 # Infracost runs on pull requests (PR) and posts PR comments.
+
 on:
   pull_request:
     types: [opened, synchronize, closed]
