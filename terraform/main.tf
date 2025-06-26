@@ -84,7 +84,7 @@ resource "aws_security_group" "gitops_sg" {
   }
 }
 
-resource "aws_instance" "grafana_server" {
+resource "aws_instance" "nginx_server" {
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = var.instance_type
   subnet_id              = aws_subnet.gitops_subnet.id
@@ -92,20 +92,20 @@ resource "aws_instance" "grafana_server" {
   user_data              = file("userdata.tftpl")
 
   tags = {
-    Name = "grafana-server"
+    Name = "nginx-server"
   }
 }
 
 
-# check "grafana_health_check" {
+# check "nginx_health_check" {
 #   data "http" "test" {
-#     url = "http://${aws_instance.grafana_server.public_ip}:3000"
+#     url = "http://${aws_instance.nginx_server.public_ip}:3000"
 #     retry {
 #       attempts = 5
 #     }
 #   }
 #   assert {
 #     condition     = data.http.test.status_code == 200
-#     error_message = "Grafana is inaccessible on port 3000."
+#     error_message = "nginx is inaccessible on port 3000."
 #   }
 # }
